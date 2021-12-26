@@ -9,14 +9,12 @@ To build a safe, verified, and trusted system where people can support the socie
 - To eliminate the need for one organization to handle all transaction data by making it decentralized and accessible to everyone.
 
 ## Target Beneficiary
-The prime beneficiaries of our project are the people who want to donate money to help others and the money will reach the required destination (i.e. there is assurity to the donar that the donation amount will be used for the required purpose and will reach the required destination).  The other beneficiaries are the people who want to seek the donation. The user is aware that all the transactions are secure due to use of SHA-256. There is no system breach possible. So D2 system is a safe donation system through which the donar and donation seeker will get benefit
+The prime beneficiaries of our project are the people who want to donate money to help others and the money will reach the required destination (i.e. there is assurity to the donar that the donation amount will be used for the required purpose and will reach the required destination).  The other beneficiaries are the people who want to seek the donation. The user is aware that all the transactions are secure due to use of SHA-256. There is no system breach possible. So D2 system is a safe donation system through which the donar and donation seeker will get benefit.
 
-## Problems We Have Faced During Development 
 ## License
 Check the official MIT License [here](LICENSE).
 
 ## 👥 Contributors
-
 
 - **[@SunnyRaj](https://github.com/sunnyraj5555)**
 
