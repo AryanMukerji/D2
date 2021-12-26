@@ -13,6 +13,7 @@ The prime beneficiaries of our project are the people who want to donate money t
 
 ## Problems We Have Faced During Development 
 ## License
+Check the official MIT License [here](LICENSE).
 
 ## 👥 Contributors
 
