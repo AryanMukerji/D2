@@ -16,15 +16,10 @@ Check the official MIT License [here](LICENSE).
 
 ## 👥 Contributors
 
-- **[@SunnyRaj](https://github.com/sunnyraj5555)**
+- **[@AryanMukerji](https://github.com/AryanMukerji)**
 
 - **[@SomaSekhar](https://github.com/sekhar76405)**
 
+- **[@SunnyRaj](https://github.com/sunnyraj5555)**
+
 - **[@TanishkaVashwani](https://github.com/Tani21)**
-
-- **[@AryanMukerji](https://github.com/AryanMukerji)**
-
-
-
-
-
