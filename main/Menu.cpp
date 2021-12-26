@@ -29,7 +29,7 @@ void main_menu()
         
         ClearOS();
         Title();
-        
+        write_all();
         cout << "\n\n 1. Login as User "
              << "\n 2. SignUp as User "
              << "\n 3. Login as Admin "
@@ -59,7 +59,7 @@ void main_menu()
 void admin_main_menu()
 {
     ADMIN:
-        
+        write_all();
         char choose;
         
         ClearOS();
@@ -77,7 +77,7 @@ void admin_main_menu()
         
         switch(choose)
         {
-            case '1': {mine_block(); PressEnter();}
+            case '1': {mine_block(); write_all(); PressEnter();}
             break;
             
             case '2': {display_Blockchain(); PressEnter();}
@@ -104,7 +104,7 @@ void admin_main_menu()
 void user_menu()
 {
     USER:
-        
+        write_all();
         char choose;
         
         ClearOS();
@@ -152,7 +152,7 @@ bool Is_Number(string line)
 void org_list_menu()
 {
     ORGLISTMENU:
-        
+        write_all();
         ClearOS();
         
         char choose1;
@@ -215,7 +215,7 @@ void org_list_menu()
 void post_list_menu()
 {
     POSTLISTMENU:
-        
+        write_all();
         ClearOS();
         
         if(PostList_size == 0)
@@ -292,7 +292,7 @@ void post_list_menu()
 
 void donate_to_post_menu(long Post_ID)
 {
-
+    write_all();
     //checking if post donation is completed or not?
     long left_money = PostList[Post_ID - 1].get_amount_left();
 
