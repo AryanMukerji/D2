@@ -292,21 +292,42 @@ void post_list_menu()
 
 void donate_to_post_menu(long Post_ID)
 {
-    char choose2;
+
+    //checking if post donation is completed or not?
+    long left_money = PostList[Post_ID - 1].get_amount_left();
+
+    if(left_money>0){
+        char choose2;
     
-    cout << "\n\n 1. Donate to this Post "
-         << "\n 2. Return to Post list "
-         << "\n\n Enter Your Choice : ";
-    cin >> choose2;
+        cout << "\n\n 1. Donate to this Post "
+            << "\n 2. Return to Post list "
+            << "\n\n Enter Your Choice : ";
+        cin >> choose2;
+        
+        switch(choose2)
+        {
+            case '1': donate_money_UI(Post_ID);
+            break;
+            
+            case '2': post_list_menu();
+            break;
+            
+            default: cout << "\n !!Invalid Input!! ";
+        }
+    }
+    else{
+        char choose2;
     
-    switch(choose2)
-    {
-        case '1': donate_money_UI(Post_ID);
-        break;
+        cout << "\n\n 1. Return to Post list "
+            << "\n\n Enter Your Choice : ";
+        cin >> choose2;
         
-        case '2': post_list_menu();
-        break;
-        
-        default: cout << "\n !!Invalid Input!! ";
+        switch(choose2)
+        {
+            case '1': post_list_menu();
+            break;
+            
+            default: cout << "\n !!Invalid Input!! ";
+        }
     }
 }
