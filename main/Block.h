@@ -9,30 +9,28 @@
 #include <cstring>
 #include "Transaction.h"
 
-
 using namespace std;
 #define N 100
 
 #ifndef BLOCK_H
 #define BLOCK_H
 
-
 class Block
 {
     private:
 
-    long BlockNumber;       //every block has a number
-    Transaction Transactions_in_the_Block[N];       // to store the list of transactions in array of transaction class objects for each transaction
-    long No_of_Transactions_in_Block;            // to store how many transactions are there inside a particular block
+    long BlockNumber;                           // every block has a number
+    Transaction Transactions_in_the_Block[N];   // to store the list of transactions in array of transaction class objects for each transaction
+    long No_of_Transactions_in_Block;           // to store how many transactions are there inside a particular block
     string Previous_Hash , Block_Hash;          // to store prev has and current block hash inside 
 
     public:
 
     Block();
-    void set_Previous_Hash();           // to set previous hash 
+    void set_Previous_Hash();                     // to set previous hash 
     void set_Previous_Hash(string Previous_Hash);
     void set_Block_Hash(string Block_Hash);       // will set the hash of current block
-    void set_BlockNumber();         //  will set the block number accordingly from the current blockchain
+    void set_BlockNumber();                       //  will set the block number accordingly from the current blockchain
     void set_BlockNumber(long i);
     void set_No_of_Transactions_in_Block(long i);
     string get_Previous_Hash(); 
