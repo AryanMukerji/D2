@@ -180,11 +180,11 @@ void display_Blockchain()
                 
             for(int j = 0; j < BlockChain[i].get_No_of_Transactions_in_Block(); j++)
             {
-                // cout << "\n\t Transaction No : " << j+1;
                 cout << "\n\t Transaction ID : " << BlockChain[i].get_transaction_ID_from_block(j)
 					 << "\n\t Sender : " << BlockChain[i].get_sender_of_transaction_from_block(j)
 					 << "\n\t Reciever : " << BlockChain[i].get_reciever_of_transaction_from_block(j)
 					 << "\n\t Amount : " << BlockChain[i].get_amount_of_transaction_from_block(j)
+					 
 					 // << "\n\t Sender's Public Key : " << BlockChain[i].get_sender_of_transaction_from_block(j)
                      // << "\n\t Transaction Message : " << BlockChain[i].get_transaction_msg_from_block(j) 
 					 << endl;
@@ -218,13 +218,13 @@ void mine_block()
     
     for(int i = 0; i<Mempool_size; i++)
     {
-        Ledger[i + Ledger_size] = Mempool[i];   // adding these to ledger as they are mined
+        Ledger[i + Ledger_size] = Mempool[i];    // adding these to ledger as they are mined
     }
     
     cout << "\n !!Transactions are added to Ledger!! ";
     
-    Ledger_size = Ledger_size + Mempool_size;   //  updating the Ledger_size
-    Mempool_size = 0;   //  freeing Mempool
+    Ledger_size = Ledger_size + Mempool_size;   // updating the Ledger_size
+    Mempool_size = 0;                           // freeing Mempool
     
     cout << "\n !!Clearing Mempool!! ";
 
@@ -245,7 +245,9 @@ void display_Ledger()
     
     for(int i = 0; i < Ledger_size; i++)
     {
-        cout << "\n " << Ledger[i].get_Transaction_ID() << " : " << Ledger[i].get_transaction_msg();
+        cout << "\n " << Ledger[i].get_Transaction_ID() 
+			 << " : " << Ledger[i].get_transaction_msg()
+			 << " | " << Ledger[i].Get_Encoded_Message();
     }
 }
 
@@ -263,6 +265,8 @@ void display_Mempool()
     
     for(int i = 0; i < Mempool_size; i++)
     {
-        cout << "\n " << Mempool[i].get_Transaction_ID() << " : " << Mempool[i].get_transaction_msg();
+        cout << "\n " << Mempool[i].get_Transaction_ID() 
+			 << " : " << Mempool[i].get_transaction_msg()
+			 << " | " << Mempool[i].Get_Encoded_Message();
     }
 }
