@@ -41,7 +41,8 @@ long BlockChain_size = 0;
         }
     }
 
-    void Block::set_Previous_Hash(string Previous_Hash){
+    void Block::set_Previous_Hash(string Previous_Hash)
+	{
         this->Previous_Hash = Previous_Hash;
     }
     
@@ -56,11 +57,13 @@ long BlockChain_size = 0;
         BlockNumber = BlockChain_size;
     }
 
-    void Block::set_BlockNumber(long i){
+    void Block::set_BlockNumber(long i)
+	{
         BlockNumber = i;
     }
 
-    void Block::set_No_of_Transactions_in_Block(long i){
+    void Block::set_No_of_Transactions_in_Block(long i)
+	{
         No_of_Transactions_in_Block =i;
     }
 
@@ -84,7 +87,8 @@ long BlockChain_size = 0;
         return No_of_Transactions_in_Block;
     }
 
-    Transaction Block::get_Transactions_in_the_Block(int i){
+    Transaction Block::get_Transactions_in_the_Block(int i)
+	{
         return Transactions_in_the_Block[i];
     }
 
@@ -102,7 +106,8 @@ long BlockChain_size = 0;
         No_of_Transactions_in_Block = total_transactions;
     }
 
-    void Block::fill_transactions_in_the_block(Transaction &t, int i){
+    void Block::fill_transactions_in_the_block(Transaction &t, int i)
+	{
         Transactions_in_the_Block[i] = t;
     }
 
@@ -173,7 +178,7 @@ void display_Blockchain()
                  << "\n Transactions inside the Block : "
                  << "\n { ";
                 
-            for(int j=0; j<BlockChain[i].get_No_of_Transactions_in_Block(); j++)
+            for(int j = 0; j < BlockChain[i].get_No_of_Transactions_in_Block(); j++)
             {
                 // cout << "\n\t Transaction No : " << j+1;
                 cout << "\n\t Transaction ID : " << BlockChain[i].get_transaction_ID_from_block(j)
@@ -185,7 +190,7 @@ void display_Blockchain()
 					 << endl;
             }
             
-            cout<<"\n } ";
+            cout << "\n } ";
         }
     }
 }
@@ -238,7 +243,7 @@ void display_Ledger()
     
     cout << "\n\n ********** Ledger ********** ";
     
-    for(int i = 0;i<Ledger_size;i++)
+    for(int i = 0; i < Ledger_size; i++)
     {
         cout << "\n " << Ledger[i].get_Transaction_ID() << " : " << Ledger[i].get_transaction_msg();
     }
@@ -256,7 +261,7 @@ void display_Mempool()
     
     cout << "\n\n ********** Mempool ********** ";
     
-    for(int i = 0;i<Mempool_size;i++)
+    for(int i = 0; i < Mempool_size; i++)
     {
         cout << "\n " << Mempool[i].get_Transaction_ID() << " : " << Mempool[i].get_transaction_msg();
     }
