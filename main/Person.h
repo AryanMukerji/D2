@@ -34,7 +34,7 @@ class User
     void set_User_ID(long uid);   // overloaded for assigning admin ID manually
     long get_User_ID();
     void set_user_details(string Name,string Phone_No,string Email_ID,string Password);
-    //void set_user_keys(long Private_Key, long Public_Key);
+    // void set_user_keys(long Private_Key, long Public_Key);
     void set_user_private_key(int Private_Key);
     void set_user_public_key(int Public_Key);
     void set_user_EDFactor(int EDFactor);
@@ -80,7 +80,7 @@ class Organization
     string org_address;
     long registration_number; // This is the registration number provided by government
     string org_phone_number;
-    long Org_ID;    // This is the organiztion ID provided by D2 to all Organization
+    long Org_ID;              // This is the organiztion ID provided by D2 to all Organization
   
     public:
   
@@ -107,6 +107,5 @@ bool verify_org(long Org_ID);
 void create_org();
 
 void intitialise_OrgList();
-
 
 #endif /* PERSON_H */
