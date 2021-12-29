@@ -41,7 +41,9 @@ long OrgList_size = 0;
     {
         this->Org_ID = OrgList_size + 1;
     }
-    void Organization::set_Org_ID(long i){
+	
+    void Organization::set_Org_ID(long i)
+	{
         Org_ID = i;
     }
     
@@ -83,7 +85,7 @@ void display_OrgList()
         return ;
     }
     
-    for(int i=0; i<OrgList_size; i++)
+    for(int i = 0; i < OrgList_size; i++)
     {
         cout << "\n " << OrgList[i].get_Org_ID() << " : " << OrgList[i].get_org_name() << " | " << OrgList[i].get_org_address();
     }
@@ -99,26 +101,31 @@ void add_org_to_list(Organization &o)
 
 bool verify_org(long Org_ID)
 {
-    bool found=true;
+    bool found = true;
+	
     ifstream OrgFile("org_id.txt");
 
-    long a, decision=0;
+    long a, decision = 0;
     
     while (OrgFile >> a)
     {
-        if(a==Org_ID)
+        if(a == Org_ID)
         {
             decision=1;
             break;
         }
-
     }
 
-    if(decision==1)
-        found=true;
+    if(decision == 1)
+	{
+        found = true;
+	}
 
     else
-        found=false;
+	{
+        found = false;
+	}
+	
     return found;
 }
 
