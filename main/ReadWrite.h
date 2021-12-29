@@ -1,12 +1,13 @@
 /*
- *  Block.h
+ *  ReadWrite.h
  *
  *  Created on: 1-Oct-2021
- *     Authors: M Somasekhar, Aryan Mukerji
+ *     Authors: M Somasekhar
  */
 
 #include <iostream>
 #include <cstring>
+
 #include "Transaction.h"
 #include "main.h"
 #include "Menu.h"
@@ -14,28 +15,24 @@
 #include "Post.h"
 #include "Block.h"
 
-
-
 using namespace std;
-
 
 #ifndef READWRITE_H
 #define READWRITE_H
 
 bool Is_empty(ifstream& pFile);
 void Check_UserList_size();
-    void Check_UserList();
-    void Check_Transaction_Ids();
-    void Check_PostList_size();
-    void Check_PostList();
+void Check_UserList();
+void Check_Transaction_Ids();
+void Check_PostList_size();
+void Check_PostList();
     
-    void Check_OrgList_size();
-    void Check_OrgList();
+void Check_OrgList_size();
+void Check_OrgList();
     
-    void Check_Mempool_size();
+void Check_Mempool_size();
 void Check_Ledger_size();
 void Check_BlockChain_size();
-
 
 void read_all();
 void write_all();
@@ -97,6 +94,5 @@ void write_UserList_size();
 void read_UserList_size();
 void write_UserList();
 void read_UserList();
-
 
 #endif /* READWRITE_H */
