@@ -63,7 +63,9 @@ User Admin;
     {
         this->EDFactor = EDFactor;
     }
-    void User::set_User_Balance(long i){
+	
+    void User::set_User_Balance(long i)
+	{
         User_Balance = i;
     }
     
@@ -127,29 +129,30 @@ void admin_init()
     cout << "\n !!Admin Created!! " << endl;
 }
 
-void user_init(){
-    //user 1
+void user_init()
+{
+    // user 1
     User u1;
     u1.set_User_ID();
     u1.set_user_details("Somasekhar", "9773526288", "sekhar@gmail.com", "sekhar");
     generate_keys(u1);   // this will be in encryption header file
     add_user_to_list(u1);
 
-    //user 2
+    // user 2
     User u2;
     u2.set_User_ID();
     u2.set_user_details("Aryan Mukerji", "7521003731", "aryan@gmail.com", "aryan");
     generate_keys(u2);   // this will be in encryption header file
     add_user_to_list(u2);
 
-    //user 3
+    // user 3
     User u3;
     u3.set_User_ID();
     u3.set_user_details("Sunny Raj", "8107706727", "sunny@gmail.com", "sunny");
     generate_keys(u3);   // this will be in encryption header file
     add_user_to_list(u3);
 
-    //user 4
+    // user 4
     User u4;
     u4.set_User_ID();
     u4.set_user_details("Tanishka Vaswani", "8130112876", "tanishkavaswani1@gmail.com", "tanishka21");
@@ -342,7 +345,7 @@ void display_UserList()
     
     cout << "\n\n ********** User List ********** ";
     
-    for(int i=0; i<UserList_size; i++)
+    for(int i = 0; i < UserList_size; i++)
     {
         cout << "\n\n User ID : " << UserList[i].get_User_ID();
         cout << "\n Name : " << UserList[i].get_User_Name();
@@ -357,7 +360,7 @@ void display_UserList()
 
 long login_verify(string username, string password)      // this will return User_Id of user from UserList
 {        
-    for(int i=0; i<UserList_size; i++)
+    for(int i = 0; i < UserList_size; i++)
     {
         if(UserList[i].get_User_Email() == username && UserList[i].get_User_Password() == password)
         {
@@ -398,7 +401,6 @@ void user_login()
 
 void admin_login()
 {
-    
     ClearOS();
     Title();
     
@@ -407,8 +409,8 @@ void admin_login()
     cout << "\n\n ********** Admin LogIn ********** ";
     
     cin.ignore();
-    cout<<"\n\n Email : "; getline(cin, Email_ID);
-    cout<<"\n Password : "; getline(cin, Password);
+    cout << "\n\n Email : "; getline(cin, Email_ID);
+    cout << "\n Password : "; getline(cin, Password);
 
 
     if(Email_ID == "admin" && Password == "admin")
