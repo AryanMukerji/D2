@@ -181,7 +181,7 @@ int Encode(User &u, Transaction &t)
 	
 	encoded = encodeMessage(len, bytes, buffer, e, n);
 	
-	cout << "\n\n The Encoded Message is: ";
+	// cout << "\n The Digital Signature : ";
 	stringstream ss;
 
     for (int i = 0; i < len; i++)
@@ -189,7 +189,7 @@ int Encode(User &u, Transaction &t)
 
     long result;
     ss >> result;
-    cout << result;
+    // cout << result;
 	
 	t.Set_Encoded_Message(result);
 	
