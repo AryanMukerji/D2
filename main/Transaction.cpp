@@ -12,7 +12,6 @@
 #include<string>
 #include <sstream>
 
-
 #include "main.h"
 #include "Menu.h"
 #include "Person.h"
@@ -52,7 +51,9 @@ long Transaction_Ids = 0;
     {
         Transaction_ID = Transaction_Ids + 1;
     }
-    void Transaction::set_Transaction_ID(long id){
+	
+    void Transaction::set_Transaction_ID(long id)
+	{
         Transaction_ID = id;
     }
     
@@ -61,13 +62,18 @@ long Transaction_Ids = 0;
         return Transaction_ID;
     }
 
-    string Transaction::get_sender(){
+    string Transaction::get_sender()
+	{
         return sender;
     }
-    string Transaction::get_reciever(){
+	
+    string Transaction::get_reciever()
+	{
         return reciever;
     }
-    long long Transaction::get_amount(){
+	
+    long long Transaction::get_amount()
+	{
         return amount;
     }
 
@@ -75,6 +81,16 @@ long Transaction_Ids = 0;
     {
         return transaction_msg;
     }
+	
+	void Transaction::Set_Encoded_Message(long encoded)
+	{
+		this->encoded = encoded;
+	}
+	
+	long Transaction::Get_Encoded_Message()
+	{
+		return encoded;
+	}
 
 void send_transaction_from_client_to_server(Transaction t, long user_priv_key ,long admin_pub_key )
 {
@@ -134,6 +150,7 @@ bool verify_transaction(string buffer)
     // decrypt the cypher with admin private key
     // decrypt using users public key
     // this decryption will give a hash, store it
+	// Decode(UserList[Logged_User_ID - 1], t);
     
     // if(hash_func(message) == hash ){
     //     return true;
@@ -154,6 +171,8 @@ Transaction NewTransaction(string sender, string reciever, long amount)
     t.set_Transaction(sender, reciever, amount, ++Transaction_Ids ); //  remember to update the Mempool_size after this Transaction is verified.
     
     //List_of_Transaction_ID.push(List_of_Transaction_ID.size() + 1)
+	
+	Encode(UserList[Logged_User_ID - 1], t);
     
     return t;
 }
@@ -161,7 +180,7 @@ Transaction NewTransaction(string sender, string reciever, long amount)
 void donate_money_UI(long Post_ID) 	
 {
     string sender, reciever;
-    long amount;
+    long amount, senderID;
     
     sender = UserList[Logged_User_ID - 1].get_User_Name();
     reciever = PostList[Post_ID - 1].get_org_name();
@@ -180,11 +199,11 @@ void donate_money_UI(long Post_ID)
         
         if(amount <= 0 || amount > PostList[Post_ID - 1].get_amount_left() )
         {
-            cout << "\n !!Invalid Amount!! \n Entered Amount is either less than 1 or more than the amount required ";
+            cout << "\n !!Invalid Amount!! \n Entered Amount is either less than 1 or more than the amount required \n";
         }
         else if(amount > UserList[Logged_User_ID - 1].get_User_Balance())
         {
-            cout << "\n Entered Amount is more than yours current balance ";
+            cout << "\n Entered Amount is more than yours current balance \n";
         }
         else
         {
