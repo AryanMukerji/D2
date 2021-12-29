@@ -34,9 +34,7 @@ class Post
     void set_Post_ID();
     void set_Post_ID(long i);
     long get_Post_ID();
-
-
-    
+	
     void set_post_details(string Post_Title, string Post_Description);
     void set_org_details(long Org_ID, string org_name, string org_address, string org_phone_number);
     void set_user_details(long User_ID, string user_name, string patient_name);
