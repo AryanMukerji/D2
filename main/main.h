@@ -31,4 +31,8 @@ int keys(User &u);
 string Object_to_SHA(Block a);
 string String_to_SHA(string a);
 
+// In EncodeDocode.cpp
+int Encode(User &u, Transaction &t);
+int Decode(User &u, Transaction &t);
+
 #endif /* MAIN_H */
