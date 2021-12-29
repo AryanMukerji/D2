@@ -30,6 +30,7 @@ class Transaction
     string sender, reciever, transaction_msg;
     long long amount;
     long Transaction_ID;
+	long encoded;
 
     // fututre additions in data member
     // 1. Digital Signature got by sender (String Type)
@@ -48,6 +49,9 @@ class Transaction
     string get_reciever();
     long long get_amount();
     string get_transaction_msg();
+	
+	void Set_Encoded_Message(long encoded);
+	long Get_Encoded_Message();
 };
 
 extern Transaction Ledger[N];
@@ -61,9 +65,5 @@ void send_transaction_from_client_to_server(Transaction &t, long user_priv_key ,
 
 void recieve_transaction_from_client(string recived_buffer, Transaction &t);
 bool verify_transaction(string buffer);
-
-
-
-
 
 #endif /* TRANSACTION_H */
