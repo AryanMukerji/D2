@@ -76,6 +76,57 @@ long OrgList_size = 0;
     {
         return registration_number;
     }
+	
+// ------------------------------- To Make A Table -------------------------------
+template<typename charT, typename traits = std::char_traits<charT> >
+
+class center_helper 
+{
+    std::basic_string<charT, traits> str_;
+    
+    public:
+    
+    center_helper(std::basic_string<charT, traits> str) : str_(str) {}
+    
+    template<typename a, typename b>
+    
+    friend std::basic_ostream<a, b>& operator<<(std::basic_ostream<a, b>& s, const center_helper<a, b>& c);
+};
+
+template<typename charT, typename traits = std::char_traits<charT> >
+
+center_helper<charT, traits> centered(std::basic_string<charT, traits> str) 
+{
+    return center_helper<charT, traits>(str);
+}
+
+// redeclare for std::string directly so we can support anything that implicitly converts to std::string
+center_helper<std::string::value_type, std::string::traits_type> centered(const std::string& str) 
+{
+    return center_helper<std::string::value_type, std::string::traits_type>(str);
+}
+
+template<typename charT, typename traits>
+
+std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, traits>& s, const center_helper<charT, traits>& c) 
+{
+    std::streamsize w = s.width();
+    
+    if (w > c.str_.length()) 
+    {
+        std::streamsize left = (w + c.str_.length()) / 2;
+        s.width(left);
+        s << c.str_;
+        s.width(w - left);
+        s << "";
+    } 
+    else 
+    {
+        s << c.str_;
+    }
+    
+    return s;
+}
 
 void display_OrgList()
 {
@@ -84,11 +135,37 @@ void display_OrgList()
         cout << "\n !!No Organization Found!! ";
         return ;
     }
+	
+	cout << "\n\n";
+	cout << "+" << std::setw(40) << centered(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered(" ------------------------------------------------------------------------------ ") 
+		 << "+" << std::endl;
+	
+	cout << "|" << std::setw(40) << centered(" Organization ID ")
+		 << "|" << std::setw(40) << centered(" Organization Name ")
+         << "|" << std::setw(80) << centered(" Organization Address ") 
+		 << "|" << std::endl;
+							   
+	cout << "+" << std::setw(40) << centered(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered(" ------------------------------------------------------------------------------ ")
+		 << "+" << std::endl;
     
     for(int i = 0; i < OrgList_size; i++)
     {
-        cout << "\n " << OrgList[i].get_Org_ID() << " : " << OrgList[i].get_org_name() << " | " << OrgList[i].get_org_address();
+		cout << "|" << std::setw(40) << centered(to_string(OrgList[i].get_Org_ID()))
+			 << "|" << std::setw(40) << centered(OrgList[i].get_org_name())
+			 << "|" << std::setw(80) << centered(OrgList[i].get_org_address()) 
+			 << "|" << std::endl;
+		 
+        // cout << "\n " << OrgList[i].get_Org_ID() << " : " << OrgList[i].get_org_name() << " | " << OrgList[i].get_org_address();
     }
+	
+	cout << "+" << std::setw(40) << centered(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered(" ------------------------------------------------------------------------------ ")
+		 << "+" << std::endl;
 }
 
 void add_org_to_list(Organization &o)
