@@ -11,7 +11,12 @@
 #include <string.h>
 #include <iostream>
 
+#include "main.h"
+#include "Menu.h"
 #include "Person.h"
+#include "Transaction.h"
+#include "Post.h"
+#include "Block.h"
 
 #define ACCURACY 5
 #define SINGLE_MAX 10000
@@ -112,7 +117,7 @@ int* encodeMessage(int len, int bytes, char* message, int exponent, int modulus)
 		encoded[i/bytes] = encode(x, exponent, modulus);
 		
         #ifndef MEASURE
-		    printf("%d ", encoded[i/bytes]);
+		    // printf("%d ", encoded[i/bytes]);
         #endif
 	}
 	
@@ -138,7 +143,7 @@ int* decodeMessage(int len, int bytes, int* cryptogram, int exponent, int modulu
 			decoded[i*bytes + j] = (x >> (7 * j)) % 128;
 			
             #ifndef MEASURE
-			    if(decoded[i*bytes + j] != '\0') printf("%c", decoded[i*bytes + j]);
+			    // if(decoded[i*bytes + j] != '\0') printf("%c", decoded[i*bytes + j]);
             #endif
 		}
 	}
@@ -146,39 +151,96 @@ int* decodeMessage(int len, int bytes, int* cryptogram, int exponent, int modulu
 	return decoded;
 }
 
-int EncodeDecode(User &user) 
+int Encode(User &u, Transaction &t)
 {
-	int p, q, n, phi, e, d, bytes, len;
+	int e = u.get_User_Public_Key(), 
+		d = u.get_User_Private_Key(), 
+		n = u.get_User_EDFactor();
+		
+    int bytes, len;
 	int *encoded, *decoded;
 	char *buffer;
 	FILE *f;
-	srand(time(NULL));
 
-	e = user.get_User_Public_Key();
-	d = user.get_User_Private_Key();
-	n = user.get_User_EDFactor();
-	
 	if(n >> 21) bytes = 3;
 	else if(n >> 14) bytes = 2;
-	else bytes = 1;	
+	else bytes = 1;
 	
-	f = fopen("text.txt", "r");
-	
+	ofstream f1;
+	f1.open("Encode.txt");
+    f1 << t.get_transaction_msg();
+
+	f = fopen("Encode.txt", "r");
 	if(f == NULL) 
 	{
 		return EXIT_FAILURE;
 	}
 	
-	len = readFile(f, &buffer, bytes); /* len will be a multiple of bytes, to send whole chunks */
+	len = readFile(f, &buffer, bytes); // len will be a multiple of bytes, to send whole chunks
 	fclose(f);
 	
 	encoded = encodeMessage(len, bytes, buffer, e, n);
 	
-	decoded = decodeMessage(len/bytes, bytes, encoded, d, n);
+	cout << "\n\n The Encoded Message is: ";
+	stringstream ss;
+
+    for (int i = 0; i < len; i++)
+        ss << encoded[i];
+
+    long result;
+    ss >> result;
+    cout << result;
+	
+	t.Set_Encoded_Message(result);
 	
 	free(encoded);
+	free(buffer);
+	return EXIT_SUCCESS;
+}
+
+int Decode(User &u, Transaction &t)
+{
+    int e = u.get_User_Public_Key(), 
+		d = u.get_User_Private_Key(), 
+		n = u.get_User_EDFactor();
+		
+    int bytes, len;
+	int *encoded, *decoded;
+	char *buffer;
+	FILE *f;
+
+	if(n >> 21) bytes = 3;
+	else if(n >> 14) bytes = 2;
+	else bytes = 1;
+	
+	ofstream f1;
+	f1.open("Encode.txt");
+    f1 << t.get_transaction_msg();
+
+	f = fopen("Encode.txt", "r");
+	if(f == NULL) 
+	{
+		return EXIT_FAILURE;
+	}
+	
+	len = readFile(f, &buffer, bytes); // len will be a multiple of bytes, to send whole chunks
+	fclose(f);
+	
+	long en = t.Get_Encoded_Message();
+	
+	for (int i = len-1; i >= 0; i--) 
+	{
+		encoded[i] = en % 10;
+		en /= 10;
+	}
+	
+	decoded = decodeMessage(len/bytes, bytes, encoded, d, n);
+	
+	cout << "\n\n The Decoded Message is: ";
+	for (int j = 0; j < len; j++)
+		cout << decoded[j];
+	
 	free(decoded);
 	free(buffer);
-	
 	return EXIT_SUCCESS;
 }
