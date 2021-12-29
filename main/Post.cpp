@@ -27,7 +27,8 @@ long PostList_size = 0;
         Post_ID = PostList_size + 1;
     }
     
-    void Post::set_Post_ID(long i){
+    void Post::set_Post_ID(long i)
+	{
         Post_ID = i;
     }
     
@@ -72,11 +73,14 @@ long PostList_size = 0;
         cout << "\n\n Posted By : " << user_name
              << "\n User ID : " << User_ID;
     }
-    string Post::get_user_name(){
+	
+    string Post::get_user_name()
+	{
         return user_name;
     }
 
-    long Post::get_User_ID(){
+    long Post::get_User_ID()
+	{
         return User_ID;
     }
     
@@ -92,7 +96,9 @@ long PostList_size = 0;
              << "\n Address : " << org_address
              << "\n Helpline : " << org_phone_number;
     }
-    long Post::get_Org_ID(){
+	
+    long Post::get_Org_ID()
+	{
         return Org_ID;
     }
 
@@ -111,7 +117,6 @@ long PostList_size = 0;
         return org_phone_number;
     }
     
-    
     void Post::set_amount(long amount_requested)
     {
         this->amount_requested = amount_requested;
@@ -119,10 +124,13 @@ long PostList_size = 0;
         amount_left = amount_requested;
     }
 
-    void Post::set_amount_left(long i){
+    void Post::set_amount_left(long i)
+	{
         amount_left = i;
     }
-    void Post::set_amount_collected(long i){
+	
+    void Post::set_amount_collected(long i)
+	{
         amount_collected = i;
     }
     
@@ -154,16 +162,18 @@ void display_PostList()
         cout << "\n !!No Posts Found!! ";
         return ;
     }
-    for(int i = 0; i<PostList_size; i++)
+	
+    for(int i = 0; i < PostList_size; i++)
     {
-        cout << "\n " << PostList[i].get_Post_ID() << " : " << PostList[i].get_Post_Title() 
-             << " | " << PostList[i].get_amount_requested() << " | " << PostList[i].get_amount_left();
+        cout << "\n " << PostList[i].get_Post_ID() 
+			 << " : " << PostList[i].get_Post_Title() 
+             << " | " << PostList[i].get_amount_requested() 
+			 << " | " << PostList[i].get_amount_left();
     }
 }
 
 void display_Post(long Post_ID)
 {
-    
     cout << "\n\n Post Title : " << PostList[Post_ID -1].get_Post_Title()
          << "\n Post ID : " << PostList[Post_ID -1].get_Post_ID()
          << "\n Patient Name : " << PostList[Post_ID -1].get_patient_name()
@@ -265,9 +275,9 @@ void post_init()
     Post p1;
     p1.set_Post_ID();
     p1.set_org_details(OrgList[0].get_Org_ID(), 
-                      OrgList[0].get_org_name(), 
-                      OrgList[0].get_org_address(), 
-                      OrgList[0].get_org_phone_number());
+                       OrgList[0].get_org_name(), 
+                       OrgList[0].get_org_address(), 
+                       OrgList[0].get_org_phone_number());
     
     p1.set_user_details(1, "Somasekhar", "Ramesh");
     p1.set_post_details("Cancer Patient", "Please Donate as much as you can, my brother is taking cancer treatment! Need Help!");
