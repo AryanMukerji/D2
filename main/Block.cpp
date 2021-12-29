@@ -231,6 +231,57 @@ void mine_block()
     // delete the block b too at the last
 }
 
+// ------------------------------- To Make A Table -------------------------------
+template<typename charT, typename traits = std::char_traits<charT> >
+
+class center_helper 
+{
+    std::basic_string<charT, traits> str_;
+    
+    public:
+    
+    center_helper(std::basic_string<charT, traits> str) : str_(str) {}
+    
+    template<typename a, typename b>
+    
+    friend std::basic_ostream<a, b>& operator<<(std::basic_ostream<a, b>& s, const center_helper<a, b>& c);
+};
+
+template<typename charT, typename traits = std::char_traits<charT> >
+
+center_helper<charT, traits> centered2(std::basic_string<charT, traits> str) 
+{
+    return center_helper<charT, traits>(str);
+}
+
+// redeclare for std::string directly so we can support anything that implicitly converts to std::string
+center_helper<std::string::value_type, std::string::traits_type> centered2(const std::string& str) 
+{
+    return center_helper<std::string::value_type, std::string::traits_type>(str);
+}
+
+template<typename charT, typename traits>
+
+std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, traits>& s, const center_helper<charT, traits>& c) 
+{
+    std::streamsize w = s.width();
+    
+    if (w > c.str_.length()) 
+    {
+        std::streamsize left = (w + c.str_.length()) / 2;
+        s.width(left);
+        s << c.str_;
+        s.width(w - left);
+        s << "";
+    } 
+    else 
+    {
+        s << c.str_;
+    }
+    
+    return s;
+}
+
 void display_Ledger()
 {
     ClearOS();
@@ -240,15 +291,41 @@ void display_Ledger()
         cout << "\n !!Ledger is Empty!! ";
         return ;
     }
-    
-    cout << "\n\n ********** Ledger ********** ";
+	
+	cout << "\n\n ********** Ledger ********** ";
+	
+	cout << "\n\n";
+	cout << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered2(" ------------------------------------------------------------------------------ ")
+		 << "+" << std::endl;
+	
+	cout << "|" << std::setw(40) << centered2(" Transaction ID ")
+         << "|" << std::setw(40) << centered2(" Digital Signature ") 
+		 << "|" << std::setw(80) << centered2(" Transaction Message ")
+		 << "|" << std::endl;
+							   
+	cout << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered2(" ------------------------------------------------------------------------------ ") 
+		 << "+" << std::endl;
     
     for(int i = 0; i < Ledger_size; i++)
     {
-        cout << "\n " << Ledger[i].get_Transaction_ID() 
+		cout << "|" << std::setw(40) << centered2(to_string(Ledger[i].get_Transaction_ID()))
+			 << "|" << std::setw(40) << centered2(to_string(Ledger[i].Get_Encoded_Message())) 
+		     << "|" << std::setw(80) << centered2(Ledger[i].get_transaction_msg())
+		     << "|" << std::endl;
+		 
+        /* cout << "\n " << Ledger[i].get_Transaction_ID() 
 			 << " : " << Ledger[i].get_transaction_msg()
-			 << " | " << Ledger[i].Get_Encoded_Message();
+			 << " | " << Ledger[i].Get_Encoded_Message(); */
     }
+	
+	cout << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered2(" ------------------------------------------------------------------------------ ") 
+		 << "+" << std::endl;
 }
 
 void display_Mempool()
@@ -260,13 +337,39 @@ void display_Mempool()
         cout << "\n !!Mempool is Empty!! ";
         return ;
     }
-    
-    cout << "\n\n ********** Mempool ********** ";
+	
+	cout << "\n\n ********** Mempool ********** ";
+	
+	cout << "\n\n";
+	cout << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered2(" ------------------------------------------------------------------------------ ")
+		 << "+" << std::endl;
+	
+	cout << "|" << std::setw(40) << centered2(" Transaction ID ")
+         << "|" << std::setw(40) << centered2(" Digital Signature ") 
+		 << "|" << std::setw(80) << centered2(" Transaction Message ")
+		 << "|" << std::endl;
+							   
+	cout << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered2(" ------------------------------------------------------------------------------ ") 
+		 << "+" << std::endl;
     
     for(int i = 0; i < Mempool_size; i++)
     {
-        cout << "\n " << Mempool[i].get_Transaction_ID() 
+		cout << "|" << std::setw(40) << centered2(to_string(Mempool[i].get_Transaction_ID()))
+			 << "|" << std::setw(40) << centered2(to_string(Mempool[i].Get_Encoded_Message())) 
+		     << "|" << std::setw(80) << centered2(Mempool[i].get_transaction_msg())
+		     << "|" << std::endl;
+		
+        /* cout << "\n " << Mempool[i].get_Transaction_ID() 
 			 << " : " << Mempool[i].get_transaction_msg()
-			 << " | " << Mempool[i].Get_Encoded_Message();
+			 << " | " << Mempool[i].Get_Encoded_Message(); */
     }
+	
+	cout << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(40) << centered2(" -------------------------------------- ")
+		 << "+" << std::setw(80) << centered2(" ------------------------------------------------------------------------------ ") 
+		 << "+" << std::endl;
 }
