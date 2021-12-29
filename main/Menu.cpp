@@ -27,9 +27,10 @@ void main_menu()
         
         char choose;
         
+		write_all();
         ClearOS();
         Title();
-        write_all();
+        
         cout << "\n\n 1. Login as User "
              << "\n 2. SignUp as User "
              << "\n 3. Login as Admin "
@@ -59,9 +60,10 @@ void main_menu()
 void admin_main_menu()
 {
     ADMIN:
-        write_all();
+	
         char choose;
         
+		write_all();
         ClearOS();
         Title();
         
@@ -104,9 +106,10 @@ void admin_main_menu()
 void user_menu()
 {
     USER:
-        write_all();
+        
         char choose;
         
+		write_all();
         ClearOS();
         Title();
         
@@ -152,6 +155,7 @@ bool Is_Number(string line)
 void org_list_menu()
 {
     ORGLISTMENU:
+	
         write_all();
         ClearOS();
         
@@ -215,6 +219,7 @@ void org_list_menu()
 void post_list_menu()
 {
     POSTLISTMENU:
+	
         write_all();
         ClearOS();
         
@@ -260,7 +265,7 @@ void post_list_menu()
                 ClearOS();
                 int count = 0;
 				
-                for(int i=0; i<PostList_size; i++)
+                for(int i = 0; i < PostList_size; i++)
                 {
                     if(PostList[i].get_Post_ID() == choose1b)
                     {
@@ -293,15 +298,17 @@ void post_list_menu()
 void donate_to_post_menu(long Post_ID)
 {
     write_all();
+	
     //checking if post donation is completed or not?
     long left_money = PostList[Post_ID - 1].get_amount_left();
 
-    if(left_money>0){
+    if(left_money > 0)
+	{
         char choose2;
     
         cout << "\n\n 1. Donate to this Post "
-            << "\n 2. Return to Post list "
-            << "\n\n Enter Your Choice : ";
+             << "\n 2. Return to Post list "
+             << "\n\n Enter Your Choice : ";
         cin >> choose2;
         
         switch(choose2)
@@ -315,11 +322,12 @@ void donate_to_post_menu(long Post_ID)
             default: cout << "\n !!Invalid Input!! ";
         }
     }
-    else{
+    else
+	{
         char choose2;
     
         cout << "\n\n 1. Return to Post list "
-            << "\n\n Enter Your Choice : ";
+             << "\n\n Enter Your Choice : ";
         cin >> choose2;
         
         switch(choose2)
