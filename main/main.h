@@ -8,7 +8,9 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <cstring>
+#include <iomanip>
 
 #include "Person.h"
 #include "Block.h"
