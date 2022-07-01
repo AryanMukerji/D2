@@ -22,4 +22,4 @@ Check the official MIT License [here](LICENSE).
 
 - **[@SunnyRaj](https://github.com/sunnyraj5555)**
 
-- **[@TanishkaVashwani](https://github.com/Tani21)**
+- **[@TanishkaVaswani](https://github.com/Tani21)**
